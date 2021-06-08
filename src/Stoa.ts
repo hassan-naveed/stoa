@@ -5,7 +5,7 @@ import { LedgerStorage } from './modules/storage/LedgerStorage';
 import { CoinMarketService } from './modules/service/CoinMaketService';
 import { logger } from './modules/common/Logger';
 import { Height, PreImageInfo, Hash, hash, Block, Utils,
-    Endian, Transaction, hashFull, DataPayload } from 'boa-sdk-ts';
+    Endian, Transaction, hashFull, DataPayload, TxPayloadFee, BOAClient } from 'boa-sdk-ts';
 import { WebService } from './modules/service/WebService';
 import { ValidatorData, IPreimage, IUnspentTxOutput, ITxStatus,
     ITxHistoryElement, ITxOverview, ConvertTypes, DisplayTxType,
@@ -15,7 +15,7 @@ import { ValidatorData, IPreimage, IUnspentTxOutput, ITxStatus,
 
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import express from 'express';
+import express, { Response } from 'express';
 import JSBI from 'jsbi';
 import { URL } from 'url';
 
@@ -150,6 +150,7 @@ class Stoa extends WebService
         this.app.post("/block_externalized", this.postBlock.bind(this));
         this.app.post("/preimage_received", this.putPreImage.bind(this));
         this.app.post("/transaction_received", this.putTransaction.bind(this));
+        this.app.get("/calculate_transaction/fee/:input/:output/:payload_size", this.estimateTxFee.bind(this));
 
         let height: Height = new Height("0");
 
@@ -437,6 +438,12 @@ class Stoa extends WebService
             return;
         }
 
+        res.status(200).send(JSON.stringify(this.calculateTransactionFees(size)));
+    }
+    /**
+     */
+    private calculateTransactionFees (size: string){
+        
         let tx_size = JSBI.BigInt(size);
         let factor = JSBI.BigInt(200);
         let minimum = JSBI.BigInt(100_000);     // 0.01BOA
@@ -456,8 +463,27 @@ class Stoa extends WebService
             medium: medium.toString(),
             low: low.toString()
         };
+        return data;
+    }
+    
+    private async estimateTxFee(req: express.Request, res: express.Response){
+        const input: number = Number(req.params.input)
+        const output: number = Number(req.params.output)
+        const payload_size: number = Number(req.params.payload_size)
 
-        res.status(200).send(JSON.stringify(data));
+        logger.http(`GET /calculate_transaction/fee/${input}/${output}/${payload_size}`)
+        if (!isNaN(input) && !isNaN(output) && !isNaN(payload_size) ){
+            const tx_size: number= Transaction.getEstimatedNumberOfBytes(input, output, payload_size)
+            const dataFee: number = JSBI.toNumber(TxPayloadFee.getFee(payload_size))            
+            const data ={                
+                dataFee,
+                totalFee: this.calculateTransactionFees(tx_size.toString())
+            }
+
+            return res.status(200).send(JSON.stringify(data));
+        }else{
+            return res.status(400).send("Invalid value for parameters");            
+        }
     }
 
     /**
@@ -1040,6 +1066,8 @@ class Stoa extends WebService
         });
     }
 
+    
+
     private verifyPayment(req: express.Request, res: express.Response) {
         let hash: string = String(req.params.hash);
 
@@ -1425,6 +1453,17 @@ class Stoa extends WebService
                 res.status(500).send("Failed to data lookup");
          })
     }
+
+    // private async caculateAvgTransactionFee(req: express.Request, res: express.Response){
+    //     logger.http("GET /calculate_avg_transaction/fee")
+    //     const data = await this.ledger_storage.getTransactionsFee()
+    //     const dataarr = data.map(res => res.tx_fee)
+    //     const dataAvg = (dataarr.reduce((a,b) => a + b,0))/dataarr.length
+
+        
+    //     return res.status(200).send(JSON.stringify(dataAvg));
+
+    // }
 
 
     /**

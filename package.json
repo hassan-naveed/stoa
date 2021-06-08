@@ -27,7 +27,7 @@
     "argparse": "^2.0.1",
     "assert": "^2.0.0",
     "axios": "^0.21.1",
-    "boa-sdk-ts": "^0.0.43",
+    "boa-sdk-ts": "^0.0.46",
     "body-parser": "^1.19.0",
     "coingecko-api-v3": "0.0.11",
     "cors": "^2.8.5",
@@ -42,6 +42,7 @@
     "node-cron": "^3.0.0",
     "smart-buffer": "^4.1.0",
     "source-map-support": "^0.5.19",
+    "uid": "^2.0.0",
     "urijs": "^1.19.6",
     "winston": "^3.3.3"
   },

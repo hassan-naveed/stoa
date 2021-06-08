@@ -8,7 +8,7 @@ server:
   port:    4242
 
   # Endpoint of Agora
-  agora_endpoint: http://127.1.1.1:4567
+  agora_endpoint: http://192.168.88.193:2826
 
 ################################################################################
 ##                               Database options                             ##
@@ -16,7 +16,7 @@ server:
 database:
    host : 127.0.0.1
    user : root
-   database : root
+   database : boascan
    password : "12345678"
    port : 3306
 

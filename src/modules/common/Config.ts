@@ -136,6 +136,8 @@ export class ServerConfig implements IServerConfig
      */
     public agora_endpoint: URL;
 
+    public server_endpoint: URL;
+
     /**
      * Constructor
      * @param address The address to which we bind
@@ -156,6 +158,7 @@ export class ServerConfig implements IServerConfig
         this.address = conf.address;
         this.port = conf.port;
         this.agora_endpoint = conf.agora_endpoint;
+        this.server_endpoint = conf.server_endpoint;
     }
 
     /**
@@ -185,7 +188,8 @@ export class ServerConfig implements IServerConfig
         return {
             address: "127.0.0.1",
             port: 3836,
-            agora_endpoint: new URL("http://127.0.0.1:2826")
+            agora_endpoint: new URL("http://127.0.0.1:2826"), 
+            server_endpoint: new URL("http://127.0.0.1:4242")
         }
     }
 }
@@ -396,6 +400,8 @@ export interface IServerConfig
      * The endpoint of Agora
      */
     agora_endpoint: URL;
+
+    server_endpoint: URL;
 }
 
 /**

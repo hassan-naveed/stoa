@@ -21,6 +21,7 @@ import { IDatabaseConfig } from '../common/Config';
 import { IMarketCap } from '../../Types'
 
 import JSBI from 'jsbi';
+import {uid} from 'uid';
 
 /**
  * The class that inserts and reads the ledger into the database.
@@ -109,6 +110,14 @@ export class LedgerStorage extends Storages
             outputs_count       INTEGER  NOT NULL,
             payload_size        INTEGER  NOT NULL,
             PRIMARY KEY(block_height, tx_index)
+        );
+
+        CREATE TABLE IF NOT EXISTS fees
+        (
+            fee_Index       TEXT NOT NULL,
+            time_stamp      INTEGER  NOT NULL,
+            average_fee     DECIMAL,
+            PRIMARY KEY(fee_Index(255))
         );
 
         CREATE TABLE IF NOT EXISTS tx_inputs
@@ -760,13 +769,21 @@ export class LedgerStorage extends Storages
      */
     public putTransactions (block: Block): Promise<void>
     {
+        let genesis_timestamp: number = this.genesis_timestamp;
+
         function save_transaction (storage: LedgerStorage, height: Height, tx_idx:
             number, hash: Hash, tx: Transaction): Promise<void>
         {
             return new Promise<void>(async (resolve, reject) =>
             {
+                
+                if (tx.type == 2) {
+                    resolve() 
+                }
                 let fees = await storage.getTransactionFee(tx);
+                
                 let tx_size = tx.getNumberOfBytes();
+               await save_fees(storage, tx, tx_idx,genesis_timestamp )
 
                 let unlock_height_query: string;
                 if ((tx.type == TxType.Payment) && (tx.inputs.length > 0))
@@ -825,6 +842,52 @@ export class LedgerStorage extends Storages
                     {
                         reject(err);
                     })
+            });
+        }
+
+        function save_fees(storage: LedgerStorage, tx: Transaction, fee_Index: number, genesis_timestamp: number){
+
+            return new Promise<void>(async (resolve, reject) =>
+            {
+                if (tx.type == 2) {
+                    //TO DO
+                    return
+                }
+                
+            let fees = await storage.getTransactionFee(tx);
+                             
+                let avgFee = await storage.getAvgFee();
+                console.log({avgFee})
+                if (avgFee.length == 0) {
+                    avgFee.push({"average_fee": JSBI.BigInt(fees[1])})
+                }
+               
+                const avgArr = avgFee.map(res => parseInt(res.average_fee))
+                
+                const average_fee = ((((avgArr.reduce((a,b) => a+b)) + JSBI.toNumber(fees[1])) /(avgArr.length+1))).toFixed(2); 
+                console.log({average_fee})
+                                                    
+                
+            storage.run(
+                `INSERT INTO fees
+                    (fee_Index ,time_stamp, average_fee)
+                VALUES
+                    (?,?,?)`,
+                [     
+                    uid(),               
+                    genesis_timestamp,
+                    average_fee
+                ]
+            )
+                .then(() =>
+                {
+                    resolve();
+                })
+                .catch((err) =>
+                {
+                    console.log("error occer here")
+                    reject(err);
+                })
             });
         }
 
@@ -1054,7 +1117,9 @@ export class LedgerStorage extends Storages
                     {
                         let melting = await is_melting(this, block.txs[tx_idx]);
 
+                        
                         await save_transaction(this, block.header.height, tx_idx, block.merkle_tree[tx_idx], block.txs[tx_idx]);
+                       //
 
                         if (block.txs[tx_idx].payload.data.length > 0)
                             await save_payload(this, block.merkle_tree[tx_idx], block.txs[tx_idx]);
@@ -2000,6 +2065,7 @@ export class LedgerStorage extends Storages
              LIMIT ? OFFSET ?;`
         return this.query(sql, [limit, limit * (page - 1)]);
     }
+    
     /**
      * Get the block overview
      * @param limit Maximum record count that can be obtained from one query
@@ -2130,6 +2196,12 @@ export class LedgerStorage extends Storages
                 blocks;`;
 
         return this.query(sql, []);
+    }
+
+    public getAvgFee (): Promise<any[]>
+    {
+        const sql = `SELECT average_fee FROM fees`
+        return this.query(sql, []);        
     }
 
     /**
