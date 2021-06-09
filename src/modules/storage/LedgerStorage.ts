@@ -269,6 +269,8 @@ export class LedgerStorage extends Storages
 
         function saveBlock (storage: LedgerStorage, block: Block, genesis_timestamp: number): Promise<void>
         {
+        
+
             return new Promise<void>((resolve, reject) =>
             {
                 let block_hash = hashFull(block.header);
@@ -783,7 +785,7 @@ export class LedgerStorage extends Storages
                 let fees = await storage.getTransactionFee(tx);
                 
                 let tx_size = tx.getNumberOfBytes();
-               await save_fees(storage, tx, tx_idx,genesis_timestamp )
+               await save_fees(storage, tx, tx_idx,genesis_timestamp, block )
 
                 let unlock_height_query: string;
                 if ((tx.type == TxType.Payment) && (tx.inputs.length > 0))
@@ -845,7 +847,7 @@ export class LedgerStorage extends Storages
             });
         }
 
-        function save_fees(storage: LedgerStorage, tx: Transaction, fee_Index: number, genesis_timestamp: number){
+        function save_fees(storage: LedgerStorage, tx: Transaction, fee_Index: number, genesis_timestamp: number, block: Block){
 
             return new Promise<void>(async (resolve, reject) =>
             {
@@ -857,7 +859,7 @@ export class LedgerStorage extends Storages
             let fees = await storage.getTransactionFee(tx);
                              
                 let avgFee = await storage.getAvgFee();
-                console.log({avgFee})
+                
                 if (avgFee.length == 0) {
                     avgFee.push({"average_fee": JSBI.BigInt(fees[1])})
                 }
@@ -865,7 +867,7 @@ export class LedgerStorage extends Storages
                 const avgArr = avgFee.map(res => parseInt(res.average_fee))
                 
                 const average_fee = ((((avgArr.reduce((a,b) => a+b)) + JSBI.toNumber(fees[1])) /(avgArr.length+1))).toFixed(2); 
-                console.log({average_fee})
+                
                                                     
                 
             storage.run(
@@ -875,7 +877,7 @@ export class LedgerStorage extends Storages
                     (?,?,?)`,
                 [     
                     uid(),               
-                    genesis_timestamp,
+                    block.header.time_offset + genesis_timestamp,
                     average_fee
                 ]
             )
@@ -884,8 +886,7 @@ export class LedgerStorage extends Storages
                     resolve();
                 })
                 .catch((err) =>
-                {
-                    console.log("error occer here")
+                {                    
                     reject(err);
                 })
             });
@@ -2022,6 +2023,17 @@ export class LedgerStorage extends Storages
             T.tx_hash = ?`;
 
         return this.query(sql, [tx_hash.toBinary(Endian.Little)]);
+    }
+    public getAvgFee24hr(): Promise<any[]>{
+        let sql =
+            `SELECT
+                *
+            FROM
+                fees
+            WHERE
+                time_stamp >= ?
+            ORDER BY time_stamp`
+            return this.query(sql, [Math.floor(Date.now()/1000)-86400])
     }
     /**
      *  Get the Latest Blocks 

@@ -11,7 +11,7 @@ import { ValidatorData, IPreimage, IUnspentTxOutput, ITxStatus,
     ITxHistoryElement, ITxOverview, ConvertTypes, DisplayTxType,
     IPendingTxs, ISPVStatus, ITransactionFee, IBlock, ITransaction,
     IBlockOverview, IBlockEnrollmentElements, IBlockEnrollment, IBlockTransactions, IBlockTransactionElements,
-    IBOAStats, IPagination, IMarketCap} from './Types';
+    IBOAStats, IPagination, IMarketCap, IAvgFee} from './Types';
 
 import bodyParser from 'body-parser';
 import cors from 'cors';
@@ -150,7 +150,8 @@ class Stoa extends WebService
         this.app.post("/block_externalized", this.postBlock.bind(this));
         this.app.post("/preimage_received", this.putPreImage.bind(this));
         this.app.post("/transaction_received", this.putTransaction.bind(this));
-        this.app.get("/calculate_transaction/fee/:input/:output/:payload_size", this.estimateTxFee.bind(this));
+        this.app.get("/transaction/estimate/fee/:input/:output/:payload_size", this.estimateTxFee.bind(this));
+        this.app.get("/averagefee/24hr", this.averageFee24hr.bind(this));
 
         let height: Height = new Height("0");
 
@@ -471,7 +472,7 @@ class Stoa extends WebService
         const output: number = Number(req.params.output)
         const payload_size: number = Number(req.params.payload_size)
 
-        logger.http(`GET /calculate_transaction/fee/${input}/${output}/${payload_size}`)
+        logger.http(`GET /transaction/estimate/fee/${input}/${output}/${payload_size}`)
         if (!isNaN(input) && !isNaN(output) && !isNaN(payload_size) ){
             const tx_size: number= Transaction.getEstimatedNumberOfBytes(input, output, payload_size)
             const dataFee: number = JSBI.toNumber(TxPayloadFee.getFee(payload_size))            
@@ -1393,6 +1394,37 @@ class Stoa extends WebService
                 }
             })
     }
+
+    private averageFee24hr(req: express.Request, res: express.Response){
+        
+        logger.http(`GET /averagefee/24hr/`);
+        
+        this.ledger_storage.getAvgFee24hr().then((data: any) => {
+            if ((data === undefined)) {
+                res.status(500).send("Failed to data lookup");
+                return;
+              }
+           else if (data.length === 0) {
+               return res.status(204).send(`The data does not exist.`);
+            }
+            else {
+                let avgFeelist: Array<IAvgFee> = [];
+                for (const row of data) {
+                    avgFeelist.push(
+                        {
+                            fee_Index:row.fee_Index,
+                            time_stamp: row.time_stamp,
+                            average_fee: row.average_fee                            
+                        }
+                    )
+                }
+            return res.status(200).send(JSON.stringify(avgFeelist));
+
+            }
+        })
+
+    }
+
     /**
       * Get Latest transactions
       * @param req 
@@ -1452,18 +1484,7 @@ class Stoa extends WebService
               logger.error("Failed to data lookup to the DB: " + err);
                 res.status(500).send("Failed to data lookup");
          })
-    }
-
-    // private async caculateAvgTransactionFee(req: express.Request, res: express.Response){
-    //     logger.http("GET /calculate_avg_transaction/fee")
-    //     const data = await this.ledger_storage.getTransactionsFee()
-    //     const dataarr = data.map(res => res.tx_fee)
-    //     const dataAvg = (dataarr.reduce((a,b) => a + b,0))/dataarr.length
-
-        
-    //     return res.status(200).send(JSON.stringify(dataAvg));
-
-    // }
+    }       
 
 
     /**

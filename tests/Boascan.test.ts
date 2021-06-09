@@ -39,7 +39,7 @@ import { IMarketCap } from '../src/Types';
 
 describe('Test of Stoa API Server', () => {
     let host: string = 'http://localhost';
-    let port: string = '3837';
+    let port: string = '4242';
     let stoa_server: TestStoa;
     let agora_server: TestAgora;
     let client = new TestClient();
@@ -578,5 +578,13 @@ describe('Test of Stoa API Server', () => {
             change_24h: -7
         }
         assert.deepStrictEqual(response.data, expected)
+    });
+    it('Test for /averagefee/24hr', async ()=>{
+        let uri = URI(host)
+            .port(port)
+            .directory("/averagefee/24hr");
+        let response = await client.get(uri.toString());
+        let expected = "The data does not exist.";
+        assert.strictEqual(response.data, expected)
     });
 });

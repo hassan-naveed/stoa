@@ -654,6 +654,23 @@ export interface ISPVStatus
     message: string;
 }
 /**
+* The interface of average Fee
+*/
+export interface IAvgFee{
+    /**
+     * index of Fee
+     */
+    fee_Index: string;
+    /**
+     * Time of Transaction
+     */
+    time_stamp: number;
+    /**
+     * Average Fee
+     */
+     average_fee: number;
+}
+/**
  * The interface of block
  */
 
