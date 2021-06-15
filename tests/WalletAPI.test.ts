@@ -80,7 +80,7 @@ describe ('Test of Stoa API for the wallet', () =>
         let url = uri.toString();
         for (let idx = 0; idx < 10; idx++)
             await client.post(url, {block: recovery_sample_data[idx]});
-        await delay(1000);
+        await delay(2000);
     });
 
     it ('Test of the path /wallet/transactions/history', async () =>
@@ -309,7 +309,7 @@ describe ('Test of Stoa API for the wallet with `sample_data`', () => {
         await client.post(url, {block: sample_data[0]});
         await client.post(url, {block: sample_data[1]});
         await client.post(url, {block: sample_data2});
-        await delay(1000);
+        await delay(2000);
     });
 
     it('Test of the path /wallet/transaction/overview with payload', async () => {
