@@ -767,6 +767,28 @@ export interface IPagination
  * Interface for MarketCap
  */
 
+export interface IAccountAnalyticsChart
+{
+    /**
+     * Public key of the wallet 
+     */
+    address: string;
+
+    /**
+     * Block unix timestamp
+     */
+    time: number;
+
+    /**
+     * Balance amount of wallet of BOA Holder
+     */
+    balance: number;
+}
+
+/**
+ * Interface for MarketCap
+ */
+
 export interface IMarketCap
 {
     /**

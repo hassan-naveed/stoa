@@ -11,7 +11,7 @@ import { ValidatorData, IPreimage, IUnspentTxOutput, ITxStatus,
     ITxHistoryElement, ITxOverview, ConvertTypes, DisplayTxType,
     IPendingTxs, ISPVStatus, ITransactionFee, IBlock, ITransaction,
     IBlockOverview, IBlockEnrollmentElements, IBlockEnrollment, IBlockTransactions, IBlockTransactionElements,
-    IBOAStats, IPagination, IMarketCap, IMarketChart, IBOAHolder} from './Types';
+    IBOAStats, IPagination, IMarketCap, IMarketChart, IBOAHolder, IAccountAnalyticsChart} from './Types';
 import { Time } from './modules/common/Time';
 
 import bodyParser from 'body-parser';
@@ -153,6 +153,7 @@ class Stoa extends WebService
         this.app.post("/preimage_received", this.putPreImage.bind(this));
         this.app.post("/transaction_received", this.putTransaction.bind(this));
         this.app.get("/holders", this.getBoaHolders.bind(this));
+        this.app.get("/account_analytics_chart/:address/:from", this.getAccountAnalyticsChart.bind(this))
 
         let height: Height = new Height("0");
 
@@ -1704,6 +1705,51 @@ class Stoa extends WebService
                 logger.error("Failed to data lookup to the DB: " + err);
                 res.send(500).send("Failed to data lookup")
             })
+    }
+
+    /**
+     * GET /account_analytics_chart/
+     *
+     * Called when a request is received through the `/account_analytics_chart/` handler
+     *
+     * Returns account analytics chart from requested time.
+     */
+     private async getAccountAnalyticsChart(req: express.Request, res: express.Response)
+    {
+        let to = Time.msToTime(Date.now());
+        let from = JSBI.subtract(JSBI.BigInt(to.seconds), JSBI.BigInt(req.params.from));
+        let num = Number(from.toString());
+
+        let dt = new Date(to.seconds * 1000);
+        let df = new Date((num)* 1000 )
+
+        logger.http(`GET /account_analytics_chart/${req.params.address}/${req.params.from}`)
+        logger.info(`Account analytics chart of wallet: ${req.params.address} from: ${df}, to: ${dt} `)
+
+        this.ledger_storage.getAccountAnalyticsChart(req.params.address, Number(from.toString()), to.seconds)
+            .then(async(rows :any [])=>{
+                 if(rows.length === 0)
+                 {
+                    res.status(204).send("The data does not exist")
+                 }
+                 else{
+                    let marketCapChart : Array<IAccountAnalyticsChart> = [];
+                    await rows.forEach((element, index)=> {
+                         marketCapChart.push({
+                            address: element.address,
+                            time: element.time,
+                            balance: element.balance,
+                         });
+                     });
+                    res.status(200).send(marketCapChart);
+                 }
+
+            })
+            .catch((err)=>{
+                logger.error("Failed to data lookup to the DB: " + err);
+                res.send(500).send("Failed to data lookup")
+            })
+
     }
     /**
       * Get BOA Holders

@@ -479,3 +479,27 @@ CREATE TABLE IF NOT EXISTS "account"(
             PRIMARY KEY ("address(64)")
         );
 );
+```
+--------
+## 16. Table **account_analytics**
+
+### Schema
+
+| Column                 | Data Type  | PK | Not NULL | Default  |Description|
+|:-----------------------|:-----------|:--:|:--------:| -------- | --------- |
+|  address               | TEXT       | Y  | Y        |          | Public key of the wallet|
+|  time                  | INTEGER    | Y  | Y        |          | Block unix timestamp  |
+|  balance               | BIGINT(20) |    | Y        |          | Balance amount of wallet of BOA Holder |
+
+### _Create Script_
+
+```sql
+CREATE TABLE IF NOT EXISTS "account_analytics"(
+            "address"          TEXT       NOT NULL,
+            "time"             INTEGER    NOT NULL,             
+            "balance"          BIGINT(20) UNSIGNED NOT NULL,
+            PRIMARY KEY ("address(64)", "time")
+        );
+);
+```
+--------

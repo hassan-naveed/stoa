@@ -706,4 +706,23 @@ describe('Test of Stoa API Server', () => {
         ]
         assert.deepStrictEqual(response.data, expected)
     });
+    it('Test of the path /account_analytics_chart', async () => {
+        let uri = URI(host)
+            .port(port)
+            .directory("/account_analytics_chart/boa1xzgenes5cf8xel37fz79gzs49v56znllk7jw7qscjwl5p6a9zxk8zaygm67/31556952");
+        let response = await client.get(uri.toString());
+        let expected = [
+            {
+              address: 'boa1xzgenes5cf8xel37fz79gzs49v56znllk7jw7qscjwl5p6a9zxk8zaygm67',
+              time: 1609459200,
+              balance: 4880000000000000
+            },
+            {
+              address: 'boa1xzgenes5cf8xel37fz79gzs49v56znllk7jw7qscjwl5p6a9zxk8zaygm67',
+              time: 1609459800,
+              balance: 4270000000000000
+            }
+          ]
+        assert.deepStrictEqual(response.data, expected)
+    });
 });

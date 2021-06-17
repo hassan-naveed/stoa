@@ -19,8 +19,9 @@ import {
 import { Storages } from './Storages';
 import { IDatabaseConfig } from '../common/Config';
 import { IAccountInformation, IMarketCap, IUnspentTxOutput } from '../../Types'
-
 import JSBI from 'jsbi';
+import { Time } from '../common/Time';
+
 
 /**
  * The class that inserts and reads the ledger into the database.
@@ -246,6 +247,13 @@ export class LedgerStorage extends Storages
             total_balance    BIGINT(20) UNSIGNED NOT NULL,
             PRIMARY KEY (address(64))
         );
+
+        CREATE TABLE IF NOT EXISTS account_analytics(
+            address          TEXT       NOT NULL,
+            time             INTEGER    NOT NULL,             
+            balance          BIGINT(20) UNSIGNED NOT NULL,
+            PRIMARY KEY (address(64), time)
+        );
        DROP TRIGGER IF EXISTS tx_trigger;
        CREATE TRIGGER tx_trigger AFTER INSERT
        ON transactions
@@ -320,7 +328,7 @@ export class LedgerStorage extends Storages
                     await this.putBlockHeight(block.header.height);
                     await this.putMerkleTree(block);
                     await this.putBlockstats(block);
-                    await this.putAccountStats(block);
+                    await this.putAccountStats(block, genesis_timestamp);
                     await this.commit();
                 }
                 catch (error)
@@ -539,7 +547,7 @@ export class LedgerStorage extends Storages
      * Puts merkle tree
      * @param block: The instance of the `Block`
      */
-    public putAccountStats(block: Block): Promise<void> {
+    public putAccountStats(block: Block, genesis_timestamp: number): Promise<void> {
         function save_stats(storage: LedgerStorage, address: string, accountInfo: IAccountInformation, received_amount: JSBI, sent_amount: JSBI,): Promise<void> {
             return new Promise<void>((resolve, reject) => {
                 storage.query(
@@ -567,6 +575,21 @@ export class LedgerStorage extends Storages
                         accountInfo.total_spendable.toString(),
                         accountInfo.total_balance.toString(),
                     ])
+                    .then(async () => {
+                        storage.query(
+                            `INSERT INTO account_analytics
+                                    (address, time, balance)
+                                VALUES
+                                    (?, ?, ? )
+                                ON DUPLICATE KEY UPDATE
+                                    balance = VALUES(balance)
+                                `,
+                            [
+                                address,
+                                block.header.time_offset + genesis_timestamp,
+                                accountInfo.total_balance.toString(),
+                            ])
+                    })
                     .then(() => {
                         resolve();
                     })
@@ -2334,6 +2357,19 @@ export class LedgerStorage extends Storages
             `SELECT * FROM marketcap WHERE last_updated_at BETWEEN ? AND ?`;
 
         return this.query(sql, [from, to]);
+    }
+
+    /**
+     * Get account analytics chart for the wallet of BOA Holder
+     * @returns Returns the Promise. If it is finished successfully the `.then`
+     * of the returned Promise is called with the records
+     * and if an error occurs the `.catch` is called with an error.
+     */
+     public getAccountAnalyticsChart(address: string, from: number, to: number): Promise<any[]> {
+        let sql =
+            `SELECT * FROM account_analytics WHERE address=? AND time BETWEEN ? AND ?`;
+
+        return this.query(sql, [address, from, to]);
     }
     /**
    * Get the transaction count for an address
