@@ -1,0 +1,3758 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.8">
+    
+    
+<title>Bosagora Docs</title>
+
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.ca7ac06f.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.f1a3b89f.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="stylesheets/extra.css">
+    
+    
+      <!--
+  Copyright (c) 2016-2021 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Google Analytics integration -->
+
+<script type="application/javascript">
+  window.ga = window.ga || function() {
+    (ga.q = ga.q || []).push(arguments)
+  }
+  ga.l = +new Date
+
+  /* Set up integration and send page view */
+  ga("create", "", "")
+  ga("set", "anonymizeIp", true)
+  ga("send", "pageview")
+
+  /* Register handler to log search on blur */
+  document.addEventListener("DOMContentLoaded", function() {
+    if (document.forms.search) {
+      var query = document.forms.search.query
+      query.addEventListener("blur", function() {
+        if (this.value) {
+          var path = document.location.pathname;
+          ga("send", "pageview", path + "?q=" + this.value)
+        }
+      })
+    }
+
+    /* Send page view on location change */
+    if (typeof location$ !== "undefined")
+      location$.subscribe(function(url) {
+        ga("send", "pageview", url.pathname)
+      })
+  })
+</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    <script>function __prefix(e){return new URL(".",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#the-database-schema-of-stoa" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <!--
+  Copyright (c) 2016-2021 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Header -->
+<header class="md-header" data-md-component="header">
+  <nav
+    class="md-header__inner md-grid"
+    aria-label="Header"
+  >
+    <!-- Link to home -->
+    <a
+      href="index.html"
+      title="Bosagora"
+      class="md-header__button md-logo"
+      aria-label="Bosagora"
+      data-md-component="logo"
+    >
+      <!--
+  Copyright (c) 2016-2021 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Logo -->
+
+<img
+  style="width: 100%; height: auto"
+  src="https://i.imgur.com/FnI9tlx.png"
+  alt="logo"
+/>
+
+    </a>
+
+    <!-- Button to open drawer -->
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+
+    <!-- Header title -->
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <!-- <span class="md-ellipsis"> Bosagora </span> -->
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <!-- <a href="/transactions">Transactions</a> -->
+          <!-- <span class="md-ellipsis">
+             The database schema of Stoa 
+          </span> -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Header options -->
+    <div class="md-header__options">
+      <!-- Switch to toggle language -->
+      
+    </div>
+
+    <!-- Button to open search modal -->
+    
+    <label class="md-header__button md-icon" for="__search">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+    </label>
+
+    <!-- Search interface -->
+    <!--
+  Copyright (c) 2016-2021 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+
+
+<!-- Search interface -->
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input
+        type="text"
+        class="md-search__input"
+        name="query"
+        aria-label="Search"
+        placeholder="Search"
+        autocapitalize="off"
+        autocorrect="off"
+        autocomplete="off"
+        spellcheck="false"
+        data-md-component="search-query"
+        data-md-state="active"
+        required
+      />
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button
+        type="reset"
+        class="md-search__icon md-icon"
+        aria-label="Clear"
+        tabindex="-1"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 
+
+    <!-- Repository information -->
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <!--
+  Copyright (c) 2016-2021 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Determine class according to configuration -->
+  
+
+<!-- Main navigation -->
+<nav
+  class="md-nav md-nav--primary"
+  aria-label="Navigation"
+  data-md-level="0"
+>
+  <!-- Site title -->
+  <label class="md-nav__title" for="__drawer">
+    <a
+      href="index.html"
+      title="Bosagora"
+      class="md-nav__button md-logo"
+      aria-label="Bosagora"
+      data-md-component="logo"
+    >
+      <!--
+  Copyright (c) 2016-2021 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Logo -->
+
+<img
+  style="width: 100%; height: auto"
+  src="https://i.imgur.com/FnI9tlx.png"
+  alt="logo"
+/>
+
+    </a>
+    <!-- Bosagora -->
+  </label>
+
+  <!-- Repository information -->
+  
+
+  <!-- Render item list -->
+  <ul class="md-nav__list" data-md-scrollfix>
+       <!--
+  Copyright (c) 2016-2021 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Wrap everything with a macro to reduce file roundtrips (see #2213) -->
+
+
+<!-- Render current and nested navigation items -->
+
+
+<!-- Determine class according to state -->
+ 
+
+<!-- Main navigation item with nested items -->
+
+<li class="md-nav__item">
+  <a href="index.html" class="md-nav__link">
+    Boascan Docs
+  </a>
+</li>
+     <!--
+  Copyright (c) 2016-2021 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Wrap everything with a macro to reduce file roundtrips (see #2213) -->
+
+
+<!-- Render current and nested navigation items -->
+
+
+<!-- Determine class according to state -->
+ 
+
+<!-- Main navigation item with nested items -->
+
+
+<!-- Determine whether to render item as a section -->
+
+
+<!-- Render item with nested items -->
+<li class="md-nav__item md-nav__item--nested">
+  <!-- Active checkbox expands items contained within nested section -->
+   
+  <input
+    class="md-nav__toggle md-toggle"
+    data-md-toggle="__nav_2"
+    type="checkbox"
+    id="__nav_2"
+    
+  />
+  
+
+  <!-- Expand active pages -->
+  <label class="md-nav__link" for="__nav_2">
+    Blocks:
+    <span class="md-nav__icon md-icon"></span>
+  </label>
+  <nav
+    class="md-nav"
+    aria-label="Blocks:"
+    data-md-level="1"
+  >
+    <label class="md-nav__title" for="__nav_2">
+      <span class="md-nav__icon md-icon"></span>
+      Blocks:
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      <!-- Render nested item list -->
+       
+
+<!-- Determine class according to state -->
+ 
+
+<!-- Main navigation item with nested items -->
+
+<li class="md-nav__item">
+  <a href="getBlocks.html" class="md-nav__link">
+    Get Blocks - GET /getmaxlatestblocks
+  </a>
+</li>
+   
+
+<!-- Determine class according to state -->
+ 
+
+<!-- Main navigation item with nested items -->
+
+<li class="md-nav__item">
+  <a href="getBlockSummary.html" class="md-nav__link">
+    Get Block Summary - GET /getblocksummary
+  </a>
+</li>
+  
+    </ul>
+  </nav>
+</li>
+
+<!-- Currently active page -->
+     <!--
+  Copyright (c) 2016-2021 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Wrap everything with a macro to reduce file roundtrips (see #2213) -->
+
+
+<!-- Render current and nested navigation items -->
+
+
+<!-- Determine class according to state -->
+ 
+
+<!-- Main navigation item with nested items -->
+
+
+<!-- Determine whether to render item as a section -->
+
+
+<!-- Render item with nested items -->
+<li class="md-nav__item md-nav__item--nested">
+  <!-- Active checkbox expands items contained within nested section -->
+   
+  <input
+    class="md-nav__toggle md-toggle"
+    data-md-toggle="__nav_3"
+    type="checkbox"
+    id="__nav_3"
+    
+  />
+  
+
+  <!-- Expand active pages -->
+  <label class="md-nav__link" for="__nav_3">
+    Transactions:
+    <span class="md-nav__icon md-icon"></span>
+  </label>
+  <nav
+    class="md-nav"
+    aria-label="Transactions:"
+    data-md-level="1"
+  >
+    <label class="md-nav__title" for="__nav_3">
+      <span class="md-nav__icon md-icon"></span>
+      Transactions:
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      <!-- Render nested item list -->
+       
+
+<!-- Determine class according to state -->
+ 
+
+<!-- Main navigation item with nested items -->
+
+<li class="md-nav__item">
+  <a href="getTransactions.html" class="md-nav__link">
+    Get Transactions - GET /getmaxlatesttransactions
+  </a>
+</li>
+   
+
+<!-- Determine class according to state -->
+ 
+
+<!-- Main navigation item with nested items -->
+
+<li class="md-nav__item">
+  <a href="getTransactionSummary.html" class="md-nav__link">
+    Get Transaction Summary - GET /getaddresssummary
+  </a>
+</li>
+  
+    </ul>
+  </nav>
+</li>
+
+<!-- Currently active page -->
+     <!--
+  Copyright (c) 2016-2021 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Wrap everything with a macro to reduce file roundtrips (see #2213) -->
+
+
+<!-- Render current and nested navigation items -->
+
+
+<!-- Determine class according to state -->
+ 
+
+<!-- Main navigation item with nested items -->
+
+
+<!-- Determine whether to render item as a section -->
+
+
+<!-- Render item with nested items -->
+<li class="md-nav__item md-nav__item--nested">
+  <!-- Active checkbox expands items contained within nested section -->
+   
+  <input
+    class="md-nav__toggle md-toggle"
+    data-md-toggle="__nav_4"
+    type="checkbox"
+    id="__nav_4"
+    
+  />
+  
+
+  <!-- Expand active pages -->
+  <label class="md-nav__link" for="__nav_4">
+    Address:
+    <span class="md-nav__icon md-icon"></span>
+  </label>
+  <nav
+    class="md-nav"
+    aria-label="Address:"
+    data-md-level="1"
+  >
+    <label class="md-nav__title" for="__nav_4">
+      <span class="md-nav__icon md-icon"></span>
+      Address:
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      <!-- Render nested item list -->
+       
+
+<!-- Determine class according to state -->
+ 
+
+<!-- Main navigation item with nested items -->
+
+<li class="md-nav__item">
+  <a href="getAddressSummary.html" class="md-nav__link">
+    Get Address Summary - GET /getaddresssummary
+  </a>
+</li>
+  
+    </ul>
+  </nav>
+</li>
+
+<!-- Currently active page -->
+  
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <!--
+  Copyright (c) 2016-2021 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+
+
+<!-- Table of contents -->
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+
+  <!--
+    Hack: check whether the content contains a h1 headline. If it does, the
+    top-level anchor must be skipped, since it would be redundant to the link
+    to the current page that is located just above the anchor. Therefore we
+    directly continue with the children of the anchor.
+  -->
+    
+
+  <!-- Render item list -->
+  
+  <label class="md-nav__title" for="__toc">
+    <span class="md-nav__icon md-icon"></span>
+    Table of contents
+  </label>
+  <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+     <!--
+  Copyright (c) 2016-2021 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#1-table-blocks" class="md-nav__link"> 1. Table blocks </a>
+
+  <!-- Render nested item list -->
+  
+  <nav class="md-nav" aria-label="1. Table blocks">
+    <ul class="md-nav__list">
+       <!--
+  Copyright (c) 2016-2021 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#schema" class="md-nav__link"> Schema </a>
+
+  <!-- Render nested item list -->
+  
+</li>  <!--
+  Copyright (c) 2016-2021 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#create-script" class="md-nav__link"> Create Script </a>
+
+  <!-- Render nested item list -->
+  
+</li> 
+    </ul>
+  </nav>
+  
+</li>  <!--
+  Copyright (c) 2016-2021 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#2-table-enrollments" class="md-nav__link"> 2. Table enrollments </a>
+
+  <!-- Render nested item list -->
+  
+  <nav class="md-nav" aria-label="2. Table enrollments">
+    <ul class="md-nav__list">
+       <!--
+  Copyright (c) 2016-2021 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#schema_1" class="md-nav__link"> Schema </a>
+
+  <!-- Render nested item list -->
+  
+</li>  <!--
+  Copyright (c) 2016-2021 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#create-script_1" class="md-nav__link"> Create Script </a>
+
+  <!-- Render nested item list -->
+  
+</li> 
+    </ul>
+  </nav>
+  
+</li>  <!--
+  Copyright (c) 2016-2021 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#3-table-transactions" class="md-nav__link"> 3. Table transactions </a>
+
+  <!-- Render nested item list -->
+  
+  <nav class="md-nav" aria-label="3. Table transactions">
+    <ul class="md-nav__list">
+       <!--
+  Copyright (c) 2016-2021 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#schema_2" class="md-nav__link"> Schema </a>
+
+  <!-- Render nested item list -->
+  
+</li>  <!--
+  Copyright (c) 2016-2021 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#create-script_2" class="md-nav__link"> Create Script </a>
+
+  <!-- Render nested item list -->
+  
+</li> 
+    </ul>
+  </nav>
+  
+</li>  <!--
+  Copyright (c) 2016-2021 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#4-table-tx_inputs" class="md-nav__link"> 4. Table tx_inputs </a>
+
+  <!-- Render nested item list -->
+  
+  <nav class="md-nav" aria-label="4. Table tx_inputs">
+    <ul class="md-nav__list">
+       <!--
+  Copyright (c) 2016-2021 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#schema_3" class="md-nav__link"> Schema </a>
+
+  <!-- Render nested item list -->
+  
+</li> 
+    </ul>
+  </nav>
+  
+</li>  <!--
+  Copyright (c) 2016-2021 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#5-table-tx_outputs" class="md-nav__link"> 5. Table tx_outputs </a>
+
+  <!-- Render nested item list -->
+  
+  <nav class="md-nav" aria-label="5. Table tx_outputs">
+    <ul class="md-nav__list">
+       <!--
+  Copyright (c) 2016-2021 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#schema_4" class="md-nav__link"> Schema </a>
+
+  <!-- Render nested item list -->
+  
+</li>  <!--
+  Copyright (c) 2016-2021 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#create-script_3" class="md-nav__link"> Create Script </a>
+
+  <!-- Render nested item list -->
+  
+</li> 
+    </ul>
+  </nav>
+  
+</li>  <!--
+  Copyright (c) 2016-2021 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#6-table-utxos" class="md-nav__link"> 6. Table utxos </a>
+
+  <!-- Render nested item list -->
+  
+  <nav class="md-nav" aria-label="6. Table utxos">
+    <ul class="md-nav__list">
+       <!--
+  Copyright (c) 2016-2021 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#schema_5" class="md-nav__link"> Schema </a>
+
+  <!-- Render nested item list -->
+  
+</li>  <!--
+  Copyright (c) 2016-2021 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#create-script_4" class="md-nav__link"> Create Script </a>
+
+  <!-- Render nested item list -->
+  
+</li> 
+    </ul>
+  </nav>
+  
+</li>  <!--
+  Copyright (c) 2016-2021 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#7-table-validators" class="md-nav__link"> 7. Table validators </a>
+
+  <!-- Render nested item list -->
+  
+  <nav class="md-nav" aria-label="7. Table validators">
+    <ul class="md-nav__list">
+       <!--
+  Copyright (c) 2016-2021 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#schema_6" class="md-nav__link"> Schema </a>
+
+  <!-- Render nested item list -->
+  
+</li>  <!--
+  Copyright (c) 2016-2021 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#create-script_5" class="md-nav__link"> Create Script </a>
+
+  <!-- Render nested item list -->
+  
+</li> 
+    </ul>
+  </nav>
+  
+</li>  <!--
+  Copyright (c) 2016-2021 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#8-table-payloads" class="md-nav__link"> 8. Table payloads </a>
+
+  <!-- Render nested item list -->
+  
+  <nav class="md-nav" aria-label="8. Table payloads">
+    <ul class="md-nav__list">
+       <!--
+  Copyright (c) 2016-2021 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#schema_7" class="md-nav__link"> Schema </a>
+
+  <!-- Render nested item list -->
+  
+</li>  <!--
+  Copyright (c) 2016-2021 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#create-script_6" class="md-nav__link"> Create Script </a>
+
+  <!-- Render nested item list -->
+  
+</li> 
+    </ul>
+  </nav>
+  
+</li>  <!--
+  Copyright (c) 2016-2021 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#9-table-merkle_trees" class="md-nav__link"> 9. Table merkle_trees </a>
+
+  <!-- Render nested item list -->
+  
+  <nav class="md-nav" aria-label="9. Table merkle_trees">
+    <ul class="md-nav__list">
+       <!--
+  Copyright (c) 2016-2021 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#schema_8" class="md-nav__link"> Schema </a>
+
+  <!-- Render nested item list -->
+  
+</li>  <!--
+  Copyright (c) 2016-2021 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#create-script_7" class="md-nav__link"> Create Script </a>
+
+  <!-- Render nested item list -->
+  
+</li> 
+    </ul>
+  </nav>
+  
+</li>  <!--
+  Copyright (c) 2016-2021 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#10-table-information" class="md-nav__link"> 10. Table information </a>
+
+  <!-- Render nested item list -->
+  
+  <nav class="md-nav" aria-label="10. Table information">
+    <ul class="md-nav__list">
+       <!--
+  Copyright (c) 2016-2021 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#schema_9" class="md-nav__link"> Schema </a>
+
+  <!-- Render nested item list -->
+  
+</li>  <!--
+  Copyright (c) 2016-2021 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#create-script_8" class="md-nav__link"> Create Script </a>
+
+  <!-- Render nested item list -->
+  
+</li> 
+    </ul>
+  </nav>
+  
+</li>  <!--
+  Copyright (c) 2016-2021 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#11-table-transaction_pool" class="md-nav__link"> 11. Table transaction_pool </a>
+
+  <!-- Render nested item list -->
+  
+  <nav class="md-nav" aria-label="11. Table transaction_pool">
+    <ul class="md-nav__list">
+       <!--
+  Copyright (c) 2016-2021 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#schema_10" class="md-nav__link"> Schema </a>
+
+  <!-- Render nested item list -->
+  
+</li>  <!--
+  Copyright (c) 2016-2021 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#create-script_9" class="md-nav__link"> Create Script </a>
+
+  <!-- Render nested item list -->
+  
+</li> 
+    </ul>
+  </nav>
+  
+</li>  <!--
+  Copyright (c) 2016-2021 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#12-table-tx_input_pool" class="md-nav__link"> 12. Table tx_input_pool </a>
+
+  <!-- Render nested item list -->
+  
+  <nav class="md-nav" aria-label="12. Table tx_input_pool">
+    <ul class="md-nav__list">
+       <!--
+  Copyright (c) 2016-2021 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#schema_11" class="md-nav__link"> Schema </a>
+
+  <!-- Render nested item list -->
+  
+</li>  <!--
+  Copyright (c) 2016-2021 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#create-script_10" class="md-nav__link"> Create Script </a>
+
+  <!-- Render nested item list -->
+  
+</li> 
+    </ul>
+  </nav>
+  
+</li>  <!--
+  Copyright (c) 2016-2021 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#13-table-tx_output_pool" class="md-nav__link"> 13. Table tx_output_pool </a>
+
+  <!-- Render nested item list -->
+  
+  <nav class="md-nav" aria-label="13. Table tx_output_pool">
+    <ul class="md-nav__list">
+       <!--
+  Copyright (c) 2016-2021 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#schema_12" class="md-nav__link"> Schema </a>
+
+  <!-- Render nested item list -->
+  
+</li>  <!--
+  Copyright (c) 2016-2021 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#create-script_11" class="md-nav__link"> Create Script </a>
+
+  <!-- Render nested item list -->
+  
+</li> 
+    </ul>
+  </nav>
+  
+</li>  <!--
+  Copyright (c) 2016-2021 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#14-table-blocks_stats" class="md-nav__link"> 14. Table blocks_stats </a>
+
+  <!-- Render nested item list -->
+  
+  <nav class="md-nav" aria-label="14. Table blocks_stats">
+    <ul class="md-nav__list">
+       <!--
+  Copyright (c) 2016-2021 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#schema_13" class="md-nav__link"> Schema </a>
+
+  <!-- Render nested item list -->
+  
+</li>  <!--
+  Copyright (c) 2016-2021 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#create-script_12" class="md-nav__link"> Create Script </a>
+
+  <!-- Render nested item list -->
+  
+</li> 
+    </ul>
+  </nav>
+  
+</li>  <!--
+  Copyright (c) 2016-2021 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#15-table-marketcap" class="md-nav__link"> 15. Table marketcap </a>
+
+  <!-- Render nested item list -->
+  
+  <nav class="md-nav" aria-label="15. Table marketcap">
+    <ul class="md-nav__list">
+       <!--
+  Copyright (c) 2016-2021 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#schema_14" class="md-nav__link"> Schema </a>
+
+  <!-- Render nested item list -->
+  
+</li>  <!--
+  Copyright (c) 2016-2021 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#create-script_13" class="md-nav__link"> Create Script </a>
+
+  <!-- Render nested item list -->
+  
+</li> 
+    </ul>
+  </nav>
+  
+</li>  <!--
+  Copyright (c) 2016-2021 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#16-table-tx_pool" class="md-nav__link"> 16. Table tx_pool </a>
+
+  <!-- Render nested item list -->
+  
+  <nav class="md-nav" aria-label="16. Table tx_pool">
+    <ul class="md-nav__list">
+       <!--
+  Copyright (c) 2016-2021 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#schema_15" class="md-nav__link"> Schema </a>
+
+  <!-- Render nested item list -->
+  
+</li>  <!--
+  Copyright (c) 2016-2021 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#create-script_14" class="md-nav__link"> Create Script </a>
+
+  <!-- Render nested item list -->
+  
+</li> 
+    </ul>
+  </nav>
+  
+</li>  <!--
+  Copyright (c) 2016-2021 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#15-table-fees" class="md-nav__link"> 15. Table fees </a>
+
+  <!-- Render nested item list -->
+  
+  <nav class="md-nav" aria-label="15. Table fees">
+    <ul class="md-nav__list">
+       <!--
+  Copyright (c) 2016-2021 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#schema_16" class="md-nav__link"> Schema </a>
+
+  <!-- Render nested item list -->
+  
+</li>  <!--
+  Copyright (c) 2016-2021 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Table of contents item -->
+<li class="md-nav__item">
+  <a href="#create-script_15" class="md-nav__link"> Create Script </a>
+
+  <!-- Render nested item list -->
+  
+</li> 
+    </ul>
+  </nav>
+  
+</li> 
+  </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="the-database-schema-of-stoa">The database schema of Stoa</h1>
+<h2 id="1-table-blocks">1. Table <strong>blocks</strong></h2>
+<h3 id="schema"><em>Schema</em></h3>
+<table>
+<thead>
+<tr>
+<th align="left">Column</th>
+<th align="left">Data Type</th>
+<th align="center">PK</th>
+<th align="center">Not NULL</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">height</td>
+<td align="left">INTEGER</td>
+<td align="center">Y</td>
+<td align="center">Y</td>
+<td></td>
+<td>The height of the block</td>
+</tr>
+<tr>
+<td align="left">hash</td>
+<td align="left">TINYBLOB</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>The hash of the current block</td>
+</tr>
+<tr>
+<td align="left">prev_block</td>
+<td align="left">TINYBLOB</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>The hash of the previous block</td>
+</tr>
+<tr>
+<td align="left">validators</td>
+<td align="left">TEXT</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>Bitfield containing the validators' key indices which signed the block</td>
+</tr>
+<tr>
+<td align="left">merkle_root</td>
+<td align="left">TINYBLOB</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>The hash of the merkle root of the transactions</td>
+</tr>
+<tr>
+<td align="left">signature</td>
+<td align="left">TINYBLOB</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>Schnorr multisig of all validators which signed this block</td>
+</tr>
+<tr>
+<td align="left">random_seed</td>
+<td align="left">TINYBLOB</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>Hash of random seed of the preimages for this height</td>
+</tr>
+<tr>
+<td align="left">missing_validators</td>
+<td align="left">TEXT</td>
+<td align="center"></td>
+<td align="center">N</td>
+<td></td>
+<td>List of indices to the validator UTXO set which have not revealed the preimage</td>
+</tr>
+<tr>
+<td align="left">tx_count</td>
+<td align="left">INTEGER</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>The number of transactions in the block</td>
+</tr>
+<tr>
+<td align="left">enrollment_count</td>
+<td align="left">INTEGER</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>The number of enrollments in the block</td>
+</tr>
+<tr>
+<td align="left">time_offset</td>
+<td align="left">INTEGER</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>Block seconds offset from Genesis Timestamp</td>
+</tr>
+<tr>
+<td align="left">time_stamp</td>
+<td align="left">INTEGER</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>Block unix timestamp</td>
+</tr>
+</tbody>
+</table>
+<h3 id="create-script"><em>Create Script</em></h3>
+<pre><code class="language-sql">CREATE TABLE IF NOT EXISTS &quot;blocks&quot; (
+    &quot;height&quot;                INTEGER  NOT NULL,
+    &quot;hash&quot;                  TINYBLOB NOT NULL,
+    &quot;prev_block&quot;            TINYBLOB NOT NULL,
+    &quot;validators&quot;            TEXT     NOT NULL,
+    &quot;merkle_root&quot;           TINYBLOB NOT NULL,
+    &quot;signature&quot;             TINYBLOB NOT NULL,
+    &quot;random_seed&quot;           TINYBLOB NOT NULL,
+    &quot;missing_validators&quot;    TEXT     NULL,
+    &quot;tx_count&quot;              INTEGER  NOT NULL,
+    &quot;enrollment_count&quot;      INTEGER  NOT NULL,
+    &quot;time_offset&quot;           INTEGER  NOT NULL,
+    &quot;time_stamp&quot;            INTEGER  NOT NULL,
+    PRIMARY KEY(&quot;height&quot;)
+)
+</code></pre>
+<hr />
+<h2 id="2-table-enrollments">2. Table <strong>enrollments</strong></h2>
+<h3 id="schema_1"><em>Schema</em></h3>
+<table>
+<thead>
+<tr>
+<th align="left">Column</th>
+<th align="left">Data Type</th>
+<th align="center">PK</th>
+<th align="center">Not NULL</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">block_height</td>
+<td align="left">INTEGER</td>
+<td align="center">Y</td>
+<td align="center">Y</td>
+<td></td>
+<td>The height of the block</td>
+</tr>
+<tr>
+<td align="left">enrollment_index</td>
+<td align="left">INTEGER</td>
+<td align="center">Y</td>
+<td align="center">Y</td>
+<td></td>
+<td>The index of enrollment in the block.</td>
+</tr>
+<tr>
+<td align="left">utxo_key</td>
+<td align="left">TINYBLOB</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>K: UTXO hash, A hash of a frozen UTXO</td>
+</tr>
+<tr>
+<td align="left">commitment</td>
+<td align="left">TINYBLOB</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>X: commitment, The nth image of random value</td>
+</tr>
+<tr>
+<td align="left">cycle_length</td>
+<td align="left">INTEGER</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>n: the number of rounds a validator will participate in</td>
+</tr>
+<tr>
+<td align="left">enroll_sig</td>
+<td align="left">TINYBLOB</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>S: A signature for the message H(K, X, n, R) and the key K, using R</td>
+</tr>
+</tbody>
+</table>
+<h3 id="create-script_1"><em>Create Script</em></h3>
+<pre><code class="language-sql">CREATE TABLE IF NOT EXISTS &quot;enrollments&quot; (
+    &quot;block_height&quot;          INTEGER  NOT NULL,
+    &quot;enrollment_index&quot;      INTEGER  NOT NULL,
+    &quot;utxo_key&quot;              TINYBLOB NOT NULL,
+    &quot;commitment&quot;            TINYBLOB NOT NULL,
+    &quot;cycle_length&quot;          INTEGER  NOT NULL,
+    &quot;enroll_sig&quot;            TINYBLOB NOT NULL,
+    PRIMARY KEY(&quot;block_height&quot;,&quot;enrollment_index&quot;)
+)
+</code></pre>
+<hr />
+<h2 id="3-table-transactions">3. Table <strong>transactions</strong></h2>
+<h3 id="schema_2"><em>Schema</em></h3>
+<table>
+<thead>
+<tr>
+<th align="left">Column</th>
+<th align="left">Data Type</th>
+<th align="center">PK</th>
+<th align="center">Not NULL</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">block_height</td>
+<td align="left">INTEGER</td>
+<td align="center">Y</td>
+<td align="center">Y</td>
+<td></td>
+<td>The height of the block</td>
+</tr>
+<tr>
+<td align="left">tx_index</td>
+<td align="left">INTEGER</td>
+<td align="center">Y</td>
+<td align="center">Y</td>
+<td></td>
+<td>The index of transaction in the block</td>
+</tr>
+<tr>
+<td align="left">tx_hash</td>
+<td align="left">TINYBLOB</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>The hash of transaction</td>
+</tr>
+<tr>
+<td align="left">type</td>
+<td align="left">INTEGER</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>The type of transaction</td>
+</tr>
+<tr>
+<td align="left">unlock_height</td>
+<td align="left">INTEGER</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>Height of the block to be unlock</td>
+</tr>
+<tr>
+<td align="left">lock_height</td>
+<td align="left">INTEGER</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>This transaction may only be included in a block with <code>block_height &gt;= lock_height</code></td>
+</tr>
+<tr>
+<td align="left">tx_fee</td>
+<td align="left">INTEGER</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>The fee of this transaction</td>
+</tr>
+<tr>
+<td align="left">payload_fee</td>
+<td align="left">INTEGER</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>The payload fee of this transaction</td>
+</tr>
+<tr>
+<td align="left">tx_size</td>
+<td align="left">INTEGER</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>The size of this transaction</td>
+</tr>
+<tr>
+<td align="left">inputs_count</td>
+<td align="left">INTEGER</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>The number of inputs in the transaction</td>
+</tr>
+<tr>
+<td align="left">outputs_count</td>
+<td align="left">INTEGER</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>The number of outputs in the transaction</td>
+</tr>
+<tr>
+<td align="left">payload_size</td>
+<td align="left">INTEGER</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>The size of data payload in the transaction</td>
+</tr>
+</tbody>
+</table>
+<h3 id="create-script_2"><em>Create Script</em></h3>
+<pre><code class="language-sql">CREATE TABLE IF NOT EXISTS &quot;transactions&quot; (
+    &quot;block_height&quot;          INTEGER  NOT NULL,
+    &quot;tx_index&quot;              INTEGER  NOT NULL,
+    &quot;tx_hash&quot;               TINYBLOB NOT NULL,
+    &quot;type&quot;                  INTEGER  NOT NULL,
+    &quot;unlock_height&quot;         INTEGER  NOT NULL,
+    &quot;lock_height&quot;           INTEGER  NOT NULL,
+    &quot;tx_fee&quot;                INTEGER  NOT NULL,
+    &quot;payload_fee&quot;           INTEGER  NOT NULL,
+    &quot;tx_size&quot;               INTEGER  NOT NULL,
+    &quot;inputs_count&quot;          INTEGER  NOT NULL,
+    &quot;outputs_count&quot;         INTEGER  NOT NULL,
+    &quot;payload_size&quot;          INTEGER  NOT NULL,
+    PRIMARY KEY(&quot;block_height&quot;,&quot;tx_index&quot;)
+)
+</code></pre>
+<hr />
+<h2 id="4-table-tx_inputs">4. Table <strong>tx_inputs</strong></h2>
+<h3 id="schema_3"><em>Schema</em></h3>
+<table>
+<thead>
+<tr>
+<th align="left">Column</th>
+<th align="left">Data Type</th>
+<th align="center">PK</th>
+<th align="center">Not NULL</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">block_height</td>
+<td align="left">INTEGER</td>
+<td align="center">Y</td>
+<td align="center">Y</td>
+<td></td>
+<td>The height of the block</td>
+</tr>
+<tr>
+<td align="left">tx_index</td>
+<td align="left">INTEGER</td>
+<td align="center">Y</td>
+<td align="center">Y</td>
+<td></td>
+<td>The index of this transaction in the block's transactions array</td>
+</tr>
+<tr>
+<td align="left">in_index</td>
+<td align="left">INTEGER</td>
+<td align="center">Y</td>
+<td align="center">Y</td>
+<td></td>
+<td>The index of this input in the Transaction's inputs array</td>
+</tr>
+<tr>
+<td align="left">tx_hash</td>
+<td align="left">TINYBLOB</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>The hash of transaction</td>
+</tr>
+<tr>
+<td align="left">utxo</td>
+<td align="left">TINYBLOB</td>
+<td align="center">Y</td>
+<td align="center">Y</td>
+<td></td>
+<td>The hash of the UTXO to be spent</td>
+</tr>
+<tr>
+<td align="left">unlock_bytes</td>
+<td align="left">TINYBLOB</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>The unlock script, which will be ran together with the matching Input's lock script in the execution engine</td>
+</tr>
+<tr>
+<td align="left">unlock_age</td>
+<td align="left">INTEGER</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>Use for implementing relative time locks</td>
+</tr>
+<tr>
+<td align="left">### <em>Create Script</em></td>
+<td align="left"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-sql">CREATE TABLE IF NOT EXISTS &quot;tx_inputs&quot; (
+    &quot;block_height&quot;          INTEGER  NOT NULL,
+    &quot;tx_index&quot;              INTEGER  NOT NULL,
+    &quot;in_index&quot;              INTEGER  NOT NULL,
+    &quot;tx_hash&quot;               TINYBLOB NOT NULL,
+    &quot;utxo&quot;                  TINYBLOB NOT NULL,
+    &quot;unlock_bytes&quot;          TINYBLOB NOT NULL,
+    &quot;unlock_age&quot;            INTEGER  NOT NULL,
+    PRIMARY KEY(&quot;block_height&quot;,&quot;tx_index&quot;,&quot;in_index&quot;,&quot;utxo(64)&quot;)
+)
+</code></pre>
+<hr />
+<h2 id="5-table-tx_outputs">5. Table <strong>tx_outputs</strong></h2>
+<h3 id="schema_4"><em>Schema</em></h3>
+<table>
+<thead>
+<tr>
+<th align="left">Column</th>
+<th align="left">Data Type</th>
+<th align="center">PK</th>
+<th align="center">Not NULL</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">block_height</td>
+<td align="left">INTEGER</td>
+<td align="center">Y</td>
+<td align="center">Y</td>
+<td></td>
+<td>The height of the block</td>
+</tr>
+<tr>
+<td align="left">tx_index</td>
+<td align="left">INTEGER</td>
+<td align="center">Y</td>
+<td align="center">Y</td>
+<td></td>
+<td>The index of transaction in the block.</td>
+</tr>
+<tr>
+<td align="left">output_index</td>
+<td align="left">INTEGER</td>
+<td align="center">Y</td>
+<td align="center">Y</td>
+<td></td>
+<td>The index of output in the outputs.</td>
+</tr>
+<tr>
+<td align="left">tx_hash</td>
+<td align="left">TINYBLOB</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>The hash of transaction</td>
+</tr>
+<tr>
+<td align="left">utxo_key</td>
+<td align="left">BLOB</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>The hash of the UTXO</td>
+</tr>
+<tr>
+<td align="left">type</td>
+<td align="left">INTEGER</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>The type of transaction output</td>
+</tr>
+<tr>
+<td align="left">amount</td>
+<td align="left">NUMERIC</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>The monetary value of this output, in 1/10^7</td>
+</tr>
+<tr>
+<td align="left">lock_type</td>
+<td align="left">INTEGER</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>(0: Key; 1: Hash of Key; 2: Script; 3: Hash of Script)</td>
+</tr>
+<tr>
+<td align="left">lock_bytes</td>
+<td align="left">TINYBLOB</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>The bytes of lock</td>
+</tr>
+<tr>
+<td align="left">address</td>
+<td align="left">TEXT</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>The public key, Valid only when lock type is 0. Other than that, it's a blank.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="create-script_3"><em>Create Script</em></h3>
+<pre><code class="language-sql">CREATE TABLE IF NOT EXISTS &quot;tx_outputs&quot; (
+    &quot;block_height&quot;          INTEGER  NOT NULL,
+    &quot;tx_index&quot;              INTEGER  NOT NULL,
+    &quot;output_index&quot;          INTEGER  NOT NULL,
+    &quot;tx_hash&quot;               TINYBLOB NOT NULL,
+    &quot;utxo_key&quot;              TINYBLOB NOT NULL,
+    &quot;type&quot;                  INTEGER  NOT NULL,
+    &quot;amount&quot;                NUMERIC  NOT NULL,
+    &quot;lock_type&quot;             INTEGER  NOT NULL,
+    &quot;lock_bytes&quot;            TINYBLOB NOT NULL,
+    &quot;address&quot;               TEXT     NOT NULL,
+    PRIMARY KEY(&quot;block_height&quot;,&quot;tx_index&quot;,&quot;output_index&quot;)
+)
+</code></pre>
+<hr />
+<h2 id="6-table-utxos">6. Table <strong>utxos</strong></h2>
+<h3 id="schema_5"><em>Schema</em></h3>
+<table>
+<thead>
+<tr>
+<th align="left">Column</th>
+<th align="left">Data Type</th>
+<th align="center">PK</th>
+<th align="center">Not NULL</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">utxo_key</td>
+<td align="left">TINYBLOB</td>
+<td align="center">Y</td>
+<td align="center">Y</td>
+<td></td>
+<td>The hash of the UTXO</td>
+</tr>
+<tr>
+<td align="left">tx_hash</td>
+<td align="left">TINYBLOB</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>The hash of transaction</td>
+</tr>
+<tr>
+<td align="left">type</td>
+<td align="left">INTEGER</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>The type of UTXO (0: Payment, 1: Freeze) If the type of transaction is <code>Freeze</code> and the refund output is less than 40,000 BOA, it is <code>Payment</code>. Others are the same as the transaction type.</td>
+</tr>
+<tr>
+<td align="left">unlock_height</td>
+<td align="left">INTEGER</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>Height of the block to be unlock</td>
+</tr>
+<tr>
+<td align="left">amount</td>
+<td align="left">BIGINT(20)</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>The monetary value of this output, in 1/10^7</td>
+</tr>
+<tr>
+<td align="left">lock_type</td>
+<td align="left">INTEGER</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>(0: Key; 1: Hash of Key; 2: Script; 3: Hash of Script)</td>
+</tr>
+<tr>
+<td align="left">lock_bytes</td>
+<td align="left">TINYBLOB</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>The bytes of lock</td>
+</tr>
+<tr>
+<td align="left">address</td>
+<td align="left">TEXT</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>The public key, Valid only when lock type is 0. Other than that, it's a blank.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="create-script_4"><em>Create Script</em></h3>
+<pre><code class="language-sql">CREATE TABLE IF NOT EXISTS &quot;utxos&quot; (
+    &quot;utxo_key&quot;              TINYBLOB   NOT NULL,
+    &quot;tx_hash&quot;               TINYBLOB   NOT NULL,
+    &quot;type&quot;                  INTEGER    NOT NULL,
+    &quot;unlock_height&quot;         INTEGER    NOT NULL,
+    &quot;amount&quot;                BIGINT(20) NOT NULL,
+    &quot;lock_type&quot;             INTEGER    NOT NULL,
+    &quot;lock_bytes&quot;            TINYBLOB   NOT NULL,
+    &quot;address&quot;               TEXT       NOT NULL,
+    PRIMARY KEY(&quot;utxo_key(64)&quot;)
+)
+</code></pre>
+<hr />
+<h2 id="7-table-validators">7. Table <strong>validators</strong></h2>
+<h3 id="schema_6"><em>Schema</em></h3>
+<table>
+<thead>
+<tr>
+<th align="left">Column</th>
+<th align="left">Data Type</th>
+<th align="center">PK</th>
+<th align="center">Not NULL</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">enrolled_at</td>
+<td align="left">INTEGER</td>
+<td align="center">Y</td>
+<td align="center">Y</td>
+<td></td>
+<td>The height this validator enrolled at</td>
+</tr>
+<tr>
+<td align="left">utxo_key</td>
+<td align="left">TINYBLOB</td>
+<td align="center">Y</td>
+<td align="center">Y</td>
+<td></td>
+<td>The hash of the UTXO</td>
+</tr>
+<tr>
+<td align="left">address</td>
+<td align="left">TEXT</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>The public key that can redeem this UTXO</td>
+</tr>
+<tr>
+<td align="left">stake</td>
+<td align="left">BIGINT(20)</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>The amount of the UTXO</td>
+</tr>
+<tr>
+<td align="left">preimage_height</td>
+<td align="left">INTEGER</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>The height of the preimage</td>
+</tr>
+<tr>
+<td align="left">preimage_hash</td>
+<td align="left">TINYBLOB</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>The hash of the preimage</td>
+</tr>
+</tbody>
+</table>
+<h3 id="create-script_5"><em>Create Script</em></h3>
+<pre><code class="language-sql">CREATE TABLE IF NOT EXISTS &quot;validators&quot; (
+    &quot;enrolled_at&quot;           INTEGER    NOT NULL,
+    &quot;utxo_key&quot;              TINYBLOB   NOT NULL,
+    &quot;address&quot;               TEXT       NOT NULL,
+    &quot;stake&quot;                 BIGINT(20) NOT NULL,
+    &quot;preimage_height&quot;       INTEGER    NOT NULL,
+    &quot;preimage_hash&quot;         TINYBLOB   NOT NULL,
+    PRIMARY KEY(&quot;enrolled_at&quot;,&quot;utxo_key(64)&quot;)
+)
+</code></pre>
+<hr />
+<h2 id="8-table-payloads">8. Table <strong>payloads</strong></h2>
+<h3 id="schema_7"><em>Schema</em></h3>
+<table>
+<thead>
+<tr>
+<th align="left">Column</th>
+<th align="left">Data Type</th>
+<th align="center">PK</th>
+<th align="center">Not NULL</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">tx_hash</td>
+<td align="left">TINYBLOB</td>
+<td align="center">Y</td>
+<td align="center">Y</td>
+<td></td>
+<td>The hash of transaction</td>
+</tr>
+<tr>
+<td align="left">payload</td>
+<td align="left">BLOB</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>The transaction data payload</td>
+</tr>
+</tbody>
+</table>
+<h3 id="create-script_6"><em>Create Script</em></h3>
+<pre><code class="language-sql">CREATE TABLE IF NOT EXISTS &quot;payloads&quot; (
+    &quot;tx_hash&quot;               TINYBLOB NOT NULL,
+    &quot;payload&quot;               BLOB     NOT NULL,
+    PRIMARY KEY(&quot;tx_hash(64)&quot;)
+)
+</code></pre>
+<hr />
+<h2 id="9-table-merkle_trees">9. Table <strong>merkle_trees</strong></h2>
+<h3 id="schema_8"><em>Schema</em></h3>
+<table>
+<thead>
+<tr>
+<th align="left">Column</th>
+<th align="left">Data Type</th>
+<th align="center">PK</th>
+<th align="center">Not NULL</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">block_height</td>
+<td align="left">INTEGER</td>
+<td align="center">Y</td>
+<td align="center">Y</td>
+<td></td>
+<td>The height of the block</td>
+</tr>
+<tr>
+<td align="left">merkle_index</td>
+<td align="left">INTEGER</td>
+<td align="center">Y</td>
+<td align="center">Y</td>
+<td></td>
+<td>The index of merkleTree in the block</td>
+</tr>
+<tr>
+<td align="left">merkle_hash</td>
+<td align="left">TINYBLOB</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>The merkle tree</td>
+</tr>
+</tbody>
+</table>
+<h3 id="create-script_7"><em>Create Script</em></h3>
+<pre><code class="language-sql">CREATE TABLE IF NOT EXISTS &quot;merkle_trees&quot; (
+    &quot;block_height&quot;          INTEGER  NOT NULL,
+    &quot;merkle_index&quot;          INTEGER  NOT NULL,
+    &quot;merkle_hash&quot;           TINYBLOB NOT NULL,
+    PRIMARY KEY(&quot;block_height&quot;,&quot;merkle_index&quot;)
+)
+</code></pre>
+<hr />
+<h2 id="10-table-information">10. Table <strong>information</strong></h2>
+<p>It can store information that is required for operation.
+The following data is recorded when the most recently recorded block height is 100.</p>
+<p>{"key": "height", "value": "100"}</p>
+<h3 id="schema_9"><em>Schema</em></h3>
+<table>
+<thead>
+<tr>
+<th align="left">Column</th>
+<th align="left">Data Type</th>
+<th align="center">PK</th>
+<th align="center">Not NULL</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">key</td>
+<td align="left">TEXT</td>
+<td align="center">Y</td>
+<td align="center">Y</td>
+<td></td>
+<td>The key</td>
+</tr>
+<tr>
+<td align="left">value</td>
+<td align="left">TEXT</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>The value</td>
+</tr>
+</tbody>
+</table>
+<h3 id="create-script_8"><em>Create Script</em></h3>
+<pre><code class="language-sql">CREATE TABLE IF NOT EXISTS &quot;information&quot; (
+    &quot;key&quot;                     TEXT    NOT NULL,
+    &quot;value&quot;                   TEXT    NOT NULL,
+    PRIMARY KEY(&quot;key(64)&quot;)
+)
+</code></pre>
+<hr />
+<h2 id="11-table-transaction_pool">11. Table <strong>transaction_pool</strong></h2>
+<h3 id="schema_10"><em>Schema</em></h3>
+<table>
+<thead>
+<tr>
+<th align="left">Column</th>
+<th align="left">Data Type</th>
+<th align="center">PK</th>
+<th align="center">Not NULL</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">tx_hash</td>
+<td align="left">TINYBLOB</td>
+<td align="center">Y</td>
+<td align="center">Y</td>
+<td></td>
+<td>The hash of transaction</td>
+</tr>
+<tr>
+<td align="left">type</td>
+<td align="left">INTEGER</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>The type of transaction</td>
+</tr>
+<tr>
+<td align="left">payload</td>
+<td align="left">BLOB</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>The transaction data payload</td>
+</tr>
+<tr>
+<td align="left">lock_height</td>
+<td align="left">INTEGER</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>This transaction may only be included in a block with <code>block_height &gt;= lock_height</code></td>
+</tr>
+<tr>
+<td align="left">received_height</td>
+<td align="left">INTEGER</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>The height of the block on receipt</td>
+</tr>
+<tr>
+<td align="left">time</td>
+<td align="left">INTEGER</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>Received time</td>
+</tr>
+<tr>
+<td align="left">tx_fee</td>
+<td align="left">INTEGER</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>The fee of this transaction</td>
+</tr>
+<tr>
+<td align="left">payload_fee</td>
+<td align="left">INTEGER</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>The payload fee of this transaction</td>
+</tr>
+<tr>
+<td align="left">tx_size</td>
+<td align="left">INTEGER</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>The size of this transaction</td>
+</tr>
+</tbody>
+</table>
+<h3 id="create-script_9"><em>Create Script</em></h3>
+<pre><code class="language-sql">CREATE TABLE IF NOT EXISTS &quot;transaction_pool&quot; (
+    &quot;tx_hash&quot;               TINYBLOB NOT NULL,
+    &quot;type&quot;                  INTEGER  NOT NULL,
+    &quot;payload&quot;               BLOB     NOT NULL,
+    &quot;lock_height&quot;           INTEGER  NOT NULL,
+    &quot;received_height&quot;       INTEGER  NOT NULL,
+    &quot;time&quot;                  INTEGER  NOT NULL,
+    &quot;tx_fee&quot;                INTEGER  NOT NULL,
+    &quot;payload_fee&quot;           INTEGER  NOT NULL,
+    &quot;tx_size&quot;               INTEGER  NOT NULL,
+    PRIMARY KEY(&quot;tx_hash(64)&quot;)
+)
+</code></pre>
+<hr />
+<h2 id="12-table-tx_input_pool">12. Table <strong>tx_input_pool</strong></h2>
+<h3 id="schema_11"><em>Schema</em></h3>
+<table>
+<thead>
+<tr>
+<th align="left">Column</th>
+<th align="left">Data Type</th>
+<th align="center">PK</th>
+<th align="center">Not NULL</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">tx_hash</td>
+<td align="left">TINYBLOB</td>
+<td align="center">Y</td>
+<td align="center">Y</td>
+<td></td>
+<td>The hash of transaction</td>
+</tr>
+<tr>
+<td align="left">input_index</td>
+<td align="left">INTEGER</td>
+<td align="center">Y</td>
+<td align="center">Y</td>
+<td></td>
+<td>The index of input in the inputs</td>
+</tr>
+<tr>
+<td align="left">utxo</td>
+<td align="left">TINYBLOB</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>The hash of the UTXO to be spent</td>
+</tr>
+<tr>
+<td align="left">unlock_bytes</td>
+<td align="left">TINYBLOB</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>The unlock script, which will be ran together with the matching Input's lock script in the execution engine</td>
+</tr>
+<tr>
+<td align="left">unlock_age</td>
+<td align="left">INTEGER</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>Use for implementing relative time locks</td>
+</tr>
+</tbody>
+</table>
+<h3 id="create-script_10"><em>Create Script</em></h3>
+<pre><code class="language-sql">CREATE TABLE IF NOT EXISTS &quot;tx_input_pool&quot; (
+    &quot;tx_hash&quot;               TINYBLOB NOT NULL,
+    &quot;input_index&quot;           INTEGER  NOT NULL,
+    &quot;utxo&quot;                  TINYBLOB NOT NULL,
+    &quot;unlock_bytes&quot;          TINYBLOB NOT NULL,
+    &quot;unlock_age&quot;            INTEGER  NOT NULL,
+    PRIMARY KEY(&quot;tx_hash(64)&quot;,&quot;input_index&quot;)
+)
+</code></pre>
+<hr />
+<h2 id="13-table-tx_output_pool">13. Table <strong>tx_output_pool</strong></h2>
+<h3 id="schema_12"><em>Schema</em></h3>
+<table>
+<thead>
+<tr>
+<th align="left">Column</th>
+<th align="left">Data Type</th>
+<th align="center">PK</th>
+<th align="center">Not NULL</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">tx_hash</td>
+<td align="left">TINYBLOB</td>
+<td align="center">Y</td>
+<td align="center">Y</td>
+<td></td>
+<td>The hash of transaction</td>
+</tr>
+<tr>
+<td align="left">output_index</td>
+<td align="left">INTEGER</td>
+<td align="center">Y</td>
+<td align="center">Y</td>
+<td></td>
+<td>The index of output in the outputs</td>
+</tr>
+<tr>
+<td align="left">type</td>
+<td align="left">INTEGER</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>The type of transaction output</td>
+</tr>
+<tr>
+<td align="left">amount</td>
+<td align="left">BIGINT(20)</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>The monetary value of this output, in 1/10^7</td>
+</tr>
+<tr>
+<td align="left">lock_type</td>
+<td align="left">INTEGER</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>(0: Key; 1: Hash of Key; 2: Script; 3: Hash of Script)</td>
+</tr>
+<tr>
+<td align="left">lock_bytes</td>
+<td align="left">TINYBLOB</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>The bytes of lock</td>
+</tr>
+<tr>
+<td align="left">address</td>
+<td align="left">TEXT</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>The public key that can redeem this output</td>
+</tr>
+</tbody>
+</table>
+<h3 id="create-script_11"><em>Create Script</em></h3>
+<pre><code class="language-sql">CREATE TABLE IF NOT EXISTS &quot;tx_output_pool&quot; (
+    &quot;tx_hash&quot;               TINYBLOB   NOT NULL,
+    &quot;output_index&quot;          INTEGER    NOT NULL,
+    &quot;type&quot;                  INTEGER    NOT NULL,
+    &quot;amount&quot;                BIGINT(20) NOT NULL,
+    &quot;lock_type&quot;             INTEGER    NOT NULL,
+    &quot;lock_bytes&quot;            TINYBLOB   NOT NULL,
+    &quot;address&quot;               TEXT       NOT NULL,
+    PRIMARY KEY(&quot;tx_hash(64)&quot;,&quot;output_index&quot;)
+)
+</code></pre>
+<hr />
+<h2 id="14-table-blocks_stats">14. Table <strong>blocks_stats</strong></h2>
+<h3 id="schema_13"><em>Schema</em></h3>
+<table>
+<thead>
+<tr>
+<th align="left">Column</th>
+<th align="left">Data Type</th>
+<th align="center">PK</th>
+<th align="center">Not NULL</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">block_height</td>
+<td align="left">INTEGER</td>
+<td align="center">Y</td>
+<td align="center">Y</td>
+<td></td>
+<td>The block height</td>
+</tr>
+<tr>
+<td align="left">total_sent</td>
+<td align="left">BIGINT(20)</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>Total sent</td>
+</tr>
+<tr>
+<td align="left">total_received</td>
+<td align="left">BIGINT(20)</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>Total received</td>
+</tr>
+<tr>
+<td align="left">total_reward</td>
+<td align="left">BIGINT(20)</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>Total reward</td>
+</tr>
+<tr>
+<td align="left">total_fee</td>
+<td align="left">BIGINT(20)</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>Total fee</td>
+</tr>
+<tr>
+<td align="left">total_size</td>
+<td align="left">BIGINT(20)</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>Total block size</td>
+</tr>
+</tbody>
+</table>
+<h3 id="create-script_12"><em>Create Script</em></h3>
+<pre><code class="language-sql">Create TABLE IF NOT EXISTS &quot;blocks_stats&quot; (
+    &quot;block_height&quot;        INTEGER     NOT NULL,
+    &quot;total_sent&quot;          BIGINT(20)  UNSIGNED NOT NULL,
+    &quot;total_received&quot;      BIGINT(20)  UNSIGNED NOT NULL,
+    &quot;total_reward&quot;        BIGINT(20)  UNSIGNED NOT NULL,
+    &quot;total_fee&quot;           BIGINT(20)  NOT NULL,
+    &quot;total_size&quot;          BIGINT(20)  UNSIGNED NOT NULL,
+    PRIMARY KEY (&quot;block_height&quot;)
+);
+</code></pre>
+<hr />
+<h2 id="15-table-marketcap">15. Table <strong>marketcap</strong></h2>
+<h3 id="schema_14"><em>Schema</em></h3>
+<table>
+<thead>
+<tr>
+<th align="left">Column</th>
+<th align="left">Data Type</th>
+<th align="center">PK</th>
+<th align="center">Not NULL</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">last_updated_at</td>
+<td align="left">INTEGER</td>
+<td align="center">Y</td>
+<td align="center">Y</td>
+<td></td>
+<td>Time of last update</td>
+</tr>
+<tr>
+<td align="left">price</td>
+<td align="left">DECIMAL(14,6)</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>Price of BOA in USD</td>
+</tr>
+<tr>
+<td align="left">market_cap</td>
+<td align="left">BIGINT(20)</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>Market cap 24 hour amount</td>
+</tr>
+<tr>
+<td align="left">vol_24h</td>
+<td align="left">BIGINT(20)</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>24 hours Volume</td>
+</tr>
+<tr>
+<td align="left">change_24h</td>
+<td align="left">BIGINT(20)</td>
+<td align="center"></td>
+<td align="center"></td>
+<td></td>
+<td>Market cap change for last 24 hours</td>
+</tr>
+</tbody>
+</table>
+<h3 id="create-script_13"><em>Create Script</em></h3>
+<pre><code class="language-sql">Create TABLE IF NOT EXISTS &quot;marketcap&quot; (
+    &quot;last_updated_at&quot;        INTEGER       NOT NULL,
+    &quot;price&quot;                  DECIMAL(14,6) NOT NULL,
+    &quot;market_cap&quot;             BIGINT(20)    UNSIGNED NOT NULL,
+    &quot;vol_24h&quot;                BIGINT(20)    UNSIGNED NOT NULL,
+    &quot;change_24h&quot;             BIGINT(20),
+    PRIMARY KEY (&quot;last_updated_at&quot;)
+);
+</code></pre>
+<h2 id="16-table-tx_pool">16. Table <strong>tx_pool</strong></h2>
+<h3 id="schema_15"><em>Schema</em></h3>
+<table>
+<thead>
+<tr>
+<th align="left">Column</th>
+<th align="left">Data Type</th>
+<th align="center">PK</th>
+<th align="center">Not NULL</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">key</td>
+<td align="left">TINYBLOB</td>
+<td align="center">Y</td>
+<td align="center">Y</td>
+<td></td>
+<td>The hash of transaction</td>
+</tr>
+<tr>
+<td align="left">val</td>
+<td align="left">BLOB</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>The transaction serialized to binary</td>
+</tr>
+</tbody>
+</table>
+<h3 id="create-script_14"><em>Create Script</em></h3>
+<pre><code class="language-sql">CREATE TABLE IF NOT EXISTS tx_pool (
+    `key`   TINYBLOB    NOT NULL,
+    `val`   BLOB        NOT NULL,
+    PRIMARY KEY (`key`(64))
+)
+</code></pre>
+<h2 id="15-table-fees">15. Table <strong>fees</strong></h2>
+<h3 id="schema_16"><em>Schema</em></h3>
+<table>
+<thead>
+<tr>
+<th align="left">Column</th>
+<th align="left">Data Type</th>
+<th align="center">PK</th>
+<th align="center">Not NULL</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">height</td>
+<td align="left">TEXT</td>
+<td align="center">Y</td>
+<td align="center">Y</td>
+<td></td>
+<td>Height of Block</td>
+</tr>
+<tr>
+<td align="left">time_stamp</td>
+<td align="left">INTEGER</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>Block unix timestamp</td>
+</tr>
+<tr>
+<td align="left">average_tx_fee</td>
+<td align="left">BIGINT(20)</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>Average Fee of All Fees</td>
+</tr>
+<tr>
+<td align="left">total_tx_fee</td>
+<td align="left">BIGINT(20)</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>Total Fee of Transactions in Block</td>
+</tr>
+<tr>
+<td align="left">total_payload_fee</td>
+<td align="left">BIGINT(20)</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>Total Payload Fee</td>
+</tr>
+<tr>
+<td align="left">total_fee</td>
+<td align="left">BIGINT(20)</td>
+<td align="center"></td>
+<td align="center">Y</td>
+<td></td>
+<td>Total Fee</td>
+</tr>
+</tbody>
+</table>
+<h3 id="create-script_15"><em>Create Script</em></h3>
+<pre><code class="language-sql">CREATE TABLE IF NOT EXISTS &quot;fees&quot;(
+    &quot;height&quot;             INTEGER    NOT NULL,
+    &quot;time_stamp&quot;         INTEGER    NOT NULL,
+    &quot;average_tx_fee&quot;     BIGINT(20) NOT NULL,
+    &quot;total_tx_fee&quot;       BIGINT(20) NOT NULL,
+    &quot;total_payload_fee&quot;  BIGINT(20) NOT NULL,
+    &quot;total_fee&quot;          BIGINT(20) NOT NULL,
+    PRIMARY KEY(height)
+);
+</code></pre>
+                
+              
+              
+                <!--
+  Copyright (c) 2016-2021 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Set from config but allow override -->
+
+
+
+<!-- Disqus integration -->
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <!--
+  Copyright (c) 2016-2021 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+
+
+<!-- Footer -->
+<footer class="md-footer">
+
+  <!-- Link to previous and/or next page -->
+  
+
+  <!-- Further information -->
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+
+      <!-- Copyright and theme information -->
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a
+          href="https://squidfunk.github.io/mkdocs-material/"
+          target="_blank" rel="noopener"
+        >
+          Material for MkDocs
+        </a>
+        
+      </div>
+
+      <!-- Social links -->
+      <!--
+  Copyright (c) 2016-2021 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Social links in footer -->
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": ""}, "search": "assets/javascripts/workers/search.b0710199.min.js", "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.76f349be.min.js"></script>
+      
+        <script src="javascripts/extra.js"></script>
+      
+    
+  </body>
+</html>

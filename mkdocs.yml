@@ -1,0 +1,22 @@
+site_name: Bosagora
+nav:
+  - Boascan Docs: index.md
+  - Blocks::
+      - Get Blocks - GET /getmaxlatestblocks: getBlocks.md
+      - Get Block Summary - GET /getblocksummary: getBlockSummary.md
+  - Transactions::
+      - Get Transactions - GET /getmaxlatesttransactions: getTransactions.md
+      - Get Transaction Summary - GET /getaddresssummary: getTransactionSummary.md
+  - Address::
+      - Get Address Summary - GET /getaddresssummary: getAddressSummary.md
+
+theme:
+  name: material
+  custom_dir: docs/overrides/
+  logo: https://i.imgur.com/FnI9tlx.png
+
+extra_css:
+  - stylesheets/extra.css
+
+extra_javascript:
+  - javascripts/extra.js
